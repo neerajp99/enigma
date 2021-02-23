@@ -1,0 +1,55 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "amazon-cognito-identity-js": "^4.5.11",
+    "axios": "^0.21.1",
+    "gsap": "^3.6.0",
+    "jwt-decode": "^3.1.2",
+    "kursor": "^0.1.6",
+    "postcss": "^8.2.4",
+    "postcss-cli": "^8.3.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.1",
+    "request-promise": "^4.2.6",
+    "sweetalert2": "^10.13.0",
+    "tailwindcss": "^2.0.3",
+    "tailwindcss-cli": "^0.1.2",
+    "web-vitals": "^1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start && npm run watch:css",
+    "build": "react-scripts build && npm run build:css",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:css": " postcss src/index.css -o src/styles/app.css",
+    "watch:css": " postcss src/index.css -o src/styles/app.css -w "
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6"
+  }
+}

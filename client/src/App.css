@@ -2,7 +2,9 @@
   text-align: center;
   background: #000 !important;
   font-family: 'Montserrat', sans-serif;
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
+  min-height: 100vh !important;
+  height: auto !important;
 }
 
 .box {
@@ -14,6 +16,9 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  background-color: #0d0e11 !important;
+}
+.navbar {
   background-color: #0d0e11 !important;
 }
 .text-flicker {
@@ -99,4 +104,73 @@
   font-family: 'Josefin Sans', sans-serif !important;
   letter-spacing: 0.9rem;
   line-height: 3rem !important;
+}
+.form-button{
+  transition: 0.3s all ease-in-out;
+  -webkit-transition: 0.3s all ease-in-out;
+  -moz-transition: 0.3s all ease-in-out;
+}
+
+.form-button:hover{
+  transform: translateY(-3px);
+  transition: 0.3s all ease-in-out;
+  -webkit-transition: 0.3s all ease-in-out;
+  -moz-transition: 0.3s all ease-in-out;
+}
+.form-button:focus{
+  outline: none !important;
+}
+
+.swal2-content, .swal2-header, .swal2-actions, .swal2-footer{
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 400;
+}
+
+.swal2-styled.swal2-confirm{
+  background-color: #0d0e11 !important;
+}
+
+.icon-div{
+  text-align: center !important;
+  width: 26px !important;
+  margin-top: 3%;
+  opacity: 0;
+}
+
+.swal2-icon.swal2-success, .swal2-success-ring {
+  border: .25em solid rgb(13 14 17) !important;
+}
+
+.swal2-success-line-tip, .swal2-success-line-long{
+  background-color: #0d0e11 !important;
+}
+/* .box {
+  margin-top: 0  !important;
+  margin-bottom: 0 !important;
+}
+.box1 {
+  margin-top: 0 !important;
+} */
+
+@media(max-width: 768px){
+  .containerclass {
+    min-height: 145vh !important;
+    height: auto !important;
+    padding-bottom: 50%;
+  }
+  .coming-soon {
+    font-size: 1.3rem !important;
+  }
+  .text-flicker{
+    font-size: 0.9rem !important;
+  }
+  .box {
+    margin-top: 10%  !important;
+    margin-bottom: 10%;
+  }
+  .box1 {
+    margin-top: 5% !important;
+  }
+
+
 }

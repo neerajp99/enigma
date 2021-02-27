@@ -9,35 +9,59 @@ import { Account } from './utils/AccountState'
 import UserStatus from './components/UserStatus'
 import ResetPassword from './components/ResetPassword';
 import CheckApi from './components/CheckApi'
+import UserAttributes from "./components/UserAttributes"
+import Dashboard from "./components/dashboard/Dashboard"
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { AccountContext } from "./utils/AccountState";
+import Swal from 'sweetalert2'
+import jwt_decode from "jwt-decode";
+import Spin from "./utils/Spin"
+import NotFound from "./components/404"
+
+if (localStorage.jwtToken) {
+  //Decode the tokens ang get user infe ormation
+  const decodedToken = jwt_decode(localStorage.jwtToken);
+  //Check for expired tokens
+  const currentTime = Date.now() / 1000;
+  console.log(decodedToken)
+  if (decodedToken.exp < currentTime) {
+    // log out user
+    localStorage.removeItem("jwtToken");
+    // Set profile to null
+    Swal.fire(
+      'Session Expired!',
+      'Please Login Again!',
+      'info'
+    )
+    window.location.href = "/login";
+  }
+}
+
 function App() {
+  const [loading, setLoading] = useState(true)
+  // const { getSession, logout } = useContext(AccountContext);
+  const [status, setStatus] = useState(false);
+  // useEffect(() => {
+  //   getSession().then(session => {
+  //     console.log("Session:", session);
+  //     setStatus(true);
+  //   });
+  // }, []);
 
   return (
-  <div className="App">
-<section class="text-gray-400 bg-black body-font h-screen w-screen flex justify-center items-center">
-  <div class="container h-screen">
-    <div class="flex flex-wrap h-full justify-center items-center">
-      <div class="-mt-24 p-4 md:w-1/2 w-full h-1/3 sm:h-1/3 xl:h-4/5 lg:h-4/6 md:h-3/5">
-      <div class="h-full p-8 rounded">
-      <img className="logo-image xl:w-4/5 lg:w-4/5 md:w-3/5 w-4/5 sm:w-4/5 block mx-auto mt-10 mb-10 object-cover object-center rounded" alt="hero" src={logo}/>
-      <h1 className="coming-soon title-font mb-4 text-white text-3xl text-center">	&beta; - TESTING</h1>
-      <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-flicker sm:text-2xl"> ENIGMA</p>
-        </div>
-      </div>
-      <div class="box rounded-lg -mt-24 p-10 md:w-1/2 w-5/6 xl:w-2/5 h-1/3 sm:h-1/3 xl:h-4/5 lg:h-4/6 md:h-3/5">
-        <div class="h-full p-12 rounded ">
-        <Account>
-          <UserStatus />
-          <Login/>
-          <CheckApi />
-        </Account>
-        <ResetPassword />
-        </div>
-      </div>
-    </div>
+    <Router>
+      <div className="App">
+    <Account>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/" component={Dashboard} />
+        <UserStatus />
+    </Account>
+    <Route exact path="/reset" component={ResetPassword} />
+    <Route path="*" component={NotFound} />
   </div>
-  <Footer/>
-</section>
-  </div>
+  </Router>
   )
 }
 export default App;

@@ -35,8 +35,8 @@ const Account = props => {
             resolve({
               user,
               headers: {
-                "x-api-key": attributes["custom:apiKey"],
-                Authorization: token
+                'x-api-key': attributes['custom:apiKey'],
+                Authorization: token,
               },
               ...session,
               ...attributes
